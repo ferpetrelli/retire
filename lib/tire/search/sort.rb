@@ -19,6 +19,14 @@ module Tire
       def to_json(options={})
         @value.to_json
       end
+
+      def flatten
+        if @value.respond_to?(:flatten) && @value.flatten
+          @value.flatten!
+        end
+
+        @value
+      end
     end
 
   end

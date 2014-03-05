@@ -161,7 +161,7 @@ module Tire
           request = {}
           request.update( { :indices_boost => @indices_boost } ) if @indices_boost
           request.update( { :query  => @query.to_hash } )    if @query
-          request.update( { :sort   => @sort.to_ary   } )    if @sort
+          request.update( { :sort   => @sort.flatten.to_ary } ) if @sort
           request.update( { :facets => @facets.to_hash } )   if @facets
           request.update( { :filter => @filters.first.to_hash } ) if @filters && @filters.size == 1
           request.update( { :filter => { :and => @filters.map {|filter| filter.to_hash} } } ) if  @filters && @filters.size > 1
